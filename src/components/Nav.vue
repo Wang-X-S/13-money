@@ -9,9 +9,12 @@
 </template>
 
 <script lang="ts">
-export default {
-  name:'Nav'
-}
+  import x from '@/assets/icons/labels.svg'
+  console.log(x)
+
+  export default {
+    name: 'Nav'
+  };
 </script>
 
 <style scoped lang="scss">
