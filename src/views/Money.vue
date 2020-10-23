@@ -5,22 +5,11 @@
 </template>
 
 <script lang="ts">
-  import Layout from '@/components/Layout.vue';
   export default {
     name: 'Money',
-    components: {Layout}
   };
 </script>
 
 <style scoped lang="scss">
-    .nav-warpper {
-        border: 1px solid green;
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh
-    }
 
-    .conent {
-        flex-grow: 1;
-    }
 </style>
