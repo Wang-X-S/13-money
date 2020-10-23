@@ -1,15 +1,16 @@
 <template>
-    <Layout>
-        <p>Money</p>
-    </Layout>
+    <div class="nav-warpper">
+        <div class="conent">
+            <slot></slot>
+        </div>
+        <Nav/>
+    </div>
 </template>
 
 <script lang="ts">
-  import Layout from '@/components/Layout.vue';
-  export default {
-    name: 'Money',
-    components: {Layout}
-  };
+export default {
+  name:'Layout'
+}
 </script>
 
 <style scoped lang="scss">
