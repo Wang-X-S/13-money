@@ -8,11 +8,8 @@
 
 <style lang="scss">
     @import "~@/assets/style/helper.scss";
+    @import "~@/assets/style/reset.scss";
 
-    *{margin:0;padding:0;
-    box-sizing:border-box;
-    overflow:hidden;
-    }
     body{
     }
     a{
@@ -25,6 +22,7 @@
   color: #333333;
     line-height:1.5;
     font-family: $font-hei;
+    font-size: 16px;
 }
 
 
