@@ -2,7 +2,7 @@
     <Layout class-prefix="layout">
         {{record}}
         <NumberPad @update:value="onUpdateAmount"/>
-        <Type @update:value="onUpdateType"/>
+        <Type :value.sync="record.type" />
         <Notes @update:value="onUpdateNotes"/>
         <Tags :data-source.sync="tags" @update:value="onUpdateTags"/>
     </Layout>
@@ -40,9 +40,7 @@
       this.record.notes = value;
     }
 
-    onUpdateType(value: string) {
-      this.record.type = value;
-    }
+
 
     onUpdateAmount(value: string) {
       this.record.amount = parseFloat(value);
