@@ -1,6 +1,6 @@
 <template>
     <Layout class-prefix="layout">
-        {{record}}
+        {{recordList}}
         <NumberPad @update:value="onUpdateAmount" @submit="saveRecord"/>
         <Type :value.sync="record.type"/>
         <Notes @update:value="onUpdateNotes"/>
@@ -30,7 +30,7 @@
     record: Record = {
       tags: [], notes: '', type: '-', amount: 0
     };
-    recordList: Record[] = [];
+    recordList: Record[] = JSON.parse(window.localStorage.getItem('recordList')||'[]');
 
 
     onUpdateTags(value: string[]) {
