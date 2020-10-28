@@ -21,6 +21,7 @@
     notes: string;
     type: string;
     amount: number;
+    createdAt?: Date;
   }
   @Component({
     components: {Tags, Notes, Type, NumberPad}
@@ -48,6 +49,7 @@
     saveRecord(){
       const record2 = JSON.parse(JSON.stringify(this.record))
       this.recordList.push(record2)
+      record2.createdAt=new Date()
 
     }
     @Watch('recordList')
