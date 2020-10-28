@@ -13,7 +13,7 @@
             <button @click="inputContent">7</button>
             <button @click="inputContent">8</button>
             <button @click="inputContent">9</button>
-            <button class="ok">OK</button>
+            <button class="ok" @click="ok">OK</button>
             <button @click="inputContent" class="zero">0</button>
             <button @click="inputContent">.</button>
         </div>
@@ -21,7 +21,7 @@
 </template>
 <script lang="ts">
   import Vue from 'vue';
-  import {Component} from 'vue-property-decorator';
+  import {Component,Watch} from 'vue-property-decorator';
   import {MountOptions} from '@vue/test-utils';
 
   @Component
@@ -58,7 +58,9 @@
     clear(){
       this.output='0'
     }
-
+    ok(){
+      this.$emit('update:value',this.output)
+    }
   }
 </script>
 
