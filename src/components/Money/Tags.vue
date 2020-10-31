@@ -52,6 +52,7 @@
         flex-grow: 1;
         display: flex;
         flex-direction: column;
+        background: white;
 
         > .current {
             display: flex;

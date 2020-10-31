@@ -1,5 +1,5 @@
 <template>
-    <div class="layout-warpper" :class="classPrefix &&`${classPrefix}-wrapper`">
+    <div class="layout-wrapper" :class="classPrefix &&`${classPrefix}-wrapper`">
         <div class="content" :class="classPrefix &&`${classPrefix}-content`">
             <slot></slot>
         </div>
@@ -15,10 +15,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
-    .layout-warpper {
+    .layout-wrapper {
+        background: #f4f4f4;
         display: flex;
         flex-direction: column;
-        min-height: 100vh
+        min-height: 100vh;
+
     }
 
     .content {
