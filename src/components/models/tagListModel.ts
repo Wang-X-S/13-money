@@ -5,8 +5,8 @@ const localStorageKeyName = 'tagList';
 const tagListModel: TagListModel = {  //:TagListModel 关联起来
   data: [],
   update(id, name) {  //告诉一个 id ,一个 name 把对应的 id 对应更新的 name
-    const idList = this.data.map(item => item.id); //找到所有id
-    if (idList.indexOf(id) >= 0) {      //如果id 在 idList 中
+    const idList = this.data.map(item => item.id);//找到所有id
+    if (idList.indexOf(id) >= 0) {  //如果id 在 idList 中
       const names = this.data.map(item => item.name);
       if (names.indexOf(name) >= 0) {
         return 'duplicated';

@@ -29,24 +29,19 @@
   export default class EditLabel extends Vue {
     tag?: { id: string ;name: string} = undefined
     created() {
-      const id = this.$route.params.id;
-      tagListModel.fetch();
-      const tags = tagListModel.data;
-      const tag = tags.filter(t => t.id === id)[0];//filter 一定会返回一个数组,对于它每一个tag的id就等于当前的id
-      if (tag) {
-        this.tag = tag;
-      } else {
-        this.$router.replace('/404'); //重定向 404页面
+      this.tag = window.findTag(this.$route.params.id);
+      if (!this.tag) {
+        this.$router.replace('/404');
       }
     }
     updateTag(name: string){
       if(this.tag){
-        tagListModel.update(this.tag.id,name)
+        window.updateTag(this.tag.id, name);
       }
     }
     remove(){
       if(this.tag){
-        if(tagListModel.remove(this.tag.id)){
+        if (window.removeTag(this.tag.id)) {
           this.$router.back()
         }else{
           window.alert('删除失败')
