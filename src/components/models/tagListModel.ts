@@ -1,18 +1,7 @@
 import createId from '@/lib/createId';
 
 const localStorageKeyName = 'tagList';
-type Tag = {
-  id: string;
-  name: string;
-}
-type TagListModel = {
-  data: Tag[];
-  fetch: () => Tag[]; //输入类型 => 输出类型
-  create: (name: string) => 'success' | 'duplicated';//联合类型
-  save: () => void;
-  update: (id: string, name: string) => 'success' | 'not found' | 'duplicated';
-  remove: (id: string) => boolean;
-}
+
 const tagListModel: TagListModel = {  //:TagListModel 关联起来
   data: [],
   update(id, name) {  //告诉一个 id ,一个 name 把对应的 id 对应更新的 name
