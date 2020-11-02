@@ -1,4 +1,4 @@
-import createId from'@/lib/createId'
+import createId from '@/lib/createId';
 
 const localStorageKeyName = 'tagList';
 type Tag = {
@@ -46,9 +46,8 @@ const tagListModel: TagListModel = {  //:TagListModel 关联起来
   create(name) {
     const names = this.data.map(item => item.name);//把data 里面所有的 name 搜索出来，产生一个新数组
     if (names.indexOf(name) >= 0) {return 'duplicated';}
-    //this.data.push({id: name, name: name});
     const id = createId().toString()
-    this.data.push({id,name:name})
+    this.data.push({id, name: name});
     this.save();
     return 'success';
   },
