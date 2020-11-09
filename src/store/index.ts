@@ -6,15 +6,24 @@ import createId from '@/lib/createId';
 
 Vue.use(Vuex)
 
+type RootState = {
+  recordList: RecordItem[];
+  tagList: Tag[];
+  currentTag?: Tag;
+}
+
 const store = new Vuex.Store({
   state: {
-    recordList:[] as RecordItem[],
-    tagList:[] as Tag[]
-  },
+    recordList: [],
+    tagList: [],
+    currentTag: undefined,
+  } as RootState,
   mutations: {
+    setCurrentTag(state,id: string){
+      state.currentTag = state.tagList.filter(t=>t.id===id)[0];
+    },
     fetchRecords(state) {
       state.recordList = JSON.parse(window.localStorage.getItem('recordList') || '[]') as RecordItem[];
-      return this.recordList;
     },
     saveRecords(state) {
       window.localStorage.setItem('recordList', JSON.stringify(state.recordList));
@@ -27,7 +36,7 @@ const store = new Vuex.Store({
       console.log(state.recordList);
     },
     fetchTags(state) {
-      return state.tagList = JSON.parse(window.localStorage.getItem('tagList') || '[]');
+      state.tagList = JSON.parse(window.localStorage.getItem('tagList') || '[]');
 
     },
     createTag(state,name: string) {
