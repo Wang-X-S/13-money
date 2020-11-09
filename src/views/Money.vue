@@ -25,7 +25,6 @@
       }
     }
   })
-
   export default class Money extends Vue {
 
     record: RecordItem = {

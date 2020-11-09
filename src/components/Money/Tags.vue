@@ -20,10 +20,10 @@
 
   @Component({
     computed: {
-      tagList(){
+      tagList() {
         //TODO
-        //return this.$.store.fetchTags()
-        return []
+        //return this.$store.fetchTags()
+        return [];
       }
     }
   })
@@ -39,10 +39,11 @@
       } else {
         this.selectedTags.push(tag);
       }
-      this.$emit('update:value',this.selectedTags)
+      this.$emit('update:value', this.selectedTags);
     }
+
     createTag() {
-      const name = window.prompt('请输入标签名')
+      const name = window.prompt('请输入标签名');
       if (!name) { return window.alert('标签名不能为空'); }
       //TODO
       //store.createTag(name);
