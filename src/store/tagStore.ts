@@ -42,7 +42,7 @@ const tagStore = {
     if (idList.indexOf(id) >= 0) {  //如果id 在 idList 中
       const names = this.tagList.map(item => item.name);
       if (names.indexOf(name) >= 0) {
-        return 'duplicated';
+        window.alert('标签名重复了');
       } else {
         const tag = this.tagList.filter(item => item.id === id)[0];
         tag.name = name;
