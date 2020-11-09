@@ -22,12 +22,14 @@
   import FormItem from '@/components/Money/FormItem.vue';
   import Button from '@/components/Button.vue';
 
+
   @Component({
     components: {Button, FormItem}
   })
   export default class EditLabel extends Vue {
     tag?: { id: string ;name: string} = undefined
     created() {
+      //TODO
       //this.tag = store.findTag(this.$route.params.id);
       if (!this.tag) {
         this.$router.replace('/404');
@@ -40,15 +42,15 @@
       }
     }
     remove(){
-      //TODO
-      return
-      // if(this.tag){
-      //   if (store.removeTag(this.tag.id)) {
-      //     this.$router.back()
-      //   }else{
-      //     window.alert('删除失败')
-      //   }
-      // }
+      if(this.tag){
+        //TODO
+        return
+        // if (store.removeTag(this.tag.id)) {
+        //   this.$router.back()
+        // }else{
+        //   window.alert('删除失败')
+        // }
+      }
     }
     goBack(){
       this.$router.back()

@@ -16,14 +16,12 @@
 <script lang="ts">
   import Vue from 'vue';
   import {Component} from 'vue-property-decorator';
-  import store from '@/store/index2';
+
 
   @Component({
     computed: {
       tagList() {
-        //TODO
-        //return this.$store.fetchTags()
-        return [];
+        return this.$store.state.tagList
       }
     }
   })
@@ -32,6 +30,9 @@
 
     selectedTags: string[] = [];
 
+    created(){
+      this.$store.commit('fetchTags')
+    }
     select(tag: string) {
       const index = this.selectedTags.indexOf(tag);
       if (index >= 0) {
@@ -45,7 +46,7 @@
     createTag() {
       const name = window.prompt('请输入标签名');
       if (!name) { return window.alert('标签名不能为空'); }
-      //TODO
+      this.$store.commit('createTag',name)
       //store.createTag(name);
 
     }
