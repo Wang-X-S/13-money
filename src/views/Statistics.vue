@@ -42,4 +42,8 @@
         }
 
     }
+    ::v-deep .interval-tabs-item{
+        height:40px;
+        font-size: 20px;
+    }
 </style>
