@@ -1,7 +1,6 @@
 <template>
     <Layout>
         <Tabs class-prefix="type" :data-source="recordTypeList" :value.sync="type"/>
-        <Tabs class-prefix="interval" :data-source="intervalList" :value.sync="interval"/>
         <div>
             <ol>
                 <li v-for="(group,index) in groupedList" :key="index">
@@ -63,7 +62,7 @@
       if(recordList.length===0){return []}
       //type HashTableValue = {title: string; items: RecordItem[]};
       //const hashTable: {title: string;items: RecordItem[]}[];
-      const newList = clone(recordList).sort((a,b)=>dayjs(b.createdAt).valueOf() - dayjs(a.createdAt).valueOf())
+      const newList = clone(recordList).filter(r=>r.type === this.type).sort((a,b)=>dayjs(b.createdAt).valueOf() - dayjs(a.createdAt).valueOf())
       const result = [{title: dayjs(newList[0].createdAt).format('YYYY-MM-DD'),items:[newList[0]]}]
       for(let i = 1;i < newList.length;i++){
         const current = newList[i];
@@ -89,10 +88,10 @@
 
 <style scoped lang="scss">
     ::v-deep .type-tabs-item {
-        background: white;;
 
+        background: #C4C4C4;
         &.selected {
-            background: #C4C4C4;
+            background: white;
 
             &::after {
                 display: none;
