@@ -4,7 +4,7 @@
         <div>
             <ol>
                 <li v-for="(group,index) in groupedList" :key="index">
-                    <h3 class="title">{{beautify(group.title)}}</h3>
+                    <h3 class="title">{{beautify(group.title)}}<span>{{group.total}}</span></h3>
                     <ol>
                         <li v-for="item in group.items" :key="item.id"
                             class="record"
@@ -60,10 +60,9 @@
     get groupedList(){
       const {recordList} = this;
       if(recordList.length===0){return []}
-      //type HashTableValue = {title: string; items: RecordItem[]};
-      //const hashTable: {title: string;items: RecordItem[]}[];
+      type Result = { title: string;total?: number;items: RecordItem[]}[];
       const newList = clone(recordList).filter(r=>r.type === this.type).sort((a,b)=>dayjs(b.createdAt).valueOf() - dayjs(a.createdAt).valueOf())
-      const result = [{title: dayjs(newList[0].createdAt).format('YYYY-MM-DD'),items:[newList[0]]}]
+      const result: Result = [{title: dayjs(newList[0].createdAt).format('YYYY-MM-DD'),items:[newList[0]]}]
       for(let i = 1;i < newList.length;i++){
         const current = newList[i];
         const last = result[result.length-1];
@@ -73,6 +72,10 @@
           result.push({title: dayjs(current.createdAt).format('YYYY-MM-DD'),items: [current]})
         }
       }
+      result.forEach(group=>{
+        group.total = group.items.reduce((sum,item)=>sum + item.amount,0)
+      })
+
       return result
     }
     beforeCreate(){
