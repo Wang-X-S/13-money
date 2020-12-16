@@ -1,6 +1,7 @@
 type RecordItem = {
   tags: Tag[];
   notes: string;
+  createRecordError: null | Error;
   type: string;
   amount: number;
   createdAt?: string;

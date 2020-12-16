@@ -13,6 +13,7 @@ const store = new Vuex.Store({
     recordList: [],
     tagList: [],
     currentTag: undefined,
+    createRecordError:null,
   } as RootState,
   mutations: {
     removeTag(state, id: string) {
@@ -56,15 +57,20 @@ const store = new Vuex.Store({
       window.localStorage.setItem('recordList', JSON.stringify(state.recordList));
     },
     createRecord(state,record) {
-      const record2: RecordItem = clone(record);
+      const record2: RecordItem= clone(record);
       record2.createdAt = new Date().toISOString();
       state.recordList.push(record2);
       store.commit('saveRecords');
-      console.log(state.recordList);
     },
     fetchTags(state) {
       state.tagList = JSON.parse(window.localStorage.getItem('tagList') || '[]');
+      if(!state.tagList || state.tagList.length === 0){
+        store.commit('createTag','衣');
+        store.commit('createTag','食');
+        store.commit('createTag','住');
+        store.commit('createTag','行');
 
+      }
     },
     createTag(state,name: string) {
       const names = state.tagList.map(item => item.name);//把data 里面所有的 name 搜索出来，产生一个新数组
@@ -75,7 +81,6 @@ const store = new Vuex.Store({
       const id = createId().toString();
       state.tagList.push({id, name: name});
       store.commit('saveTags');
-      window.alert('添加成功');
       return 'success';
     },
     saveTags(state) {

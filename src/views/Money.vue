@@ -1,10 +1,12 @@
 <template>
     <Layout class-prefix="layout">
-        {{record}}
         <NumberPad @update:value="onUpdateAmount" @submit="saveRecord"/>
         <Tabs :data-source="recordTypeList" :value.sync="record.type"/>
-        <FormItem class="FormItem" field-name="备注" placeholder="请输入备注" @update:value="onUpdateNotes"/>
-        <Tags />
+        <FormItem class="FormItem" field-name="备注"
+                  placeholder="请输入备注"
+                  :value.sync="record.notes"
+                  />
+        <Tags @update:value="record.tags = $event"/>
     </Layout>
 </template>
 
@@ -26,7 +28,7 @@
       return this.$store.state.recordList
     }
     record: RecordItem = {
-      tags: [], notes: '', type: '-', amount: 0
+      tags: [], notes: '', type: '-', amount: 0,createRecordError: null
     };
     created(){
       this.$store.commit('fetchRecords')
@@ -38,10 +40,19 @@
 
     onUpdateAmount(value: string) {
       this.record.amount = parseFloat(value);
+
     }
 
     saveRecord() {
+      if(!this.record.tags||this.record.tags.length ===0){
+        return window.alert('请至少选择一个标签')
+      }
+
       this.$store.commit('createRecord',this.record)
+      if(this.$store.state.createRecordError === null){
+        window.alert('已保存')
+      }
+
     }
   }
 </script>
