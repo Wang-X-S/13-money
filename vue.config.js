@@ -7,7 +7,7 @@ const path = require('path')
 
 module.exports = {
   publicPath: process.env.NODE_ENV === 'production'
-    ? '/13-money/'
+    ? '/13-money-website/'
     : '/',
 
   // chainWebpack 链式语法
